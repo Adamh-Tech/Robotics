@@ -1,17 +1,19 @@
-#!/usr/bin/python2
-#
-# Move the robot forwards and backwards
 from romipi_astar.romipi_driver import AStar
 import time
 
-motor_delay_s = 2.0
-forward_speed_m_s = 0.1
-stop_speed_m_s = 0.0
 romi = AStar()
+line= 0.0
+rotate = 0.0
 
-def Circle(duration_s):
-     romi.twist(2*3.14,2*3.14/duration_s)
-     time.sleep(duration_s)
+def Check():
+    romi.twist(line, rotate)
 
+#does The Action 
+while True:
+    line = 0.30
+    rotate = 0.80
+    Check()
 
-Circle(10.0)
+# stop motors and shut down light
+romi.twist(0.0, 0.0)
+romi.pixels(0, 0, 0)
